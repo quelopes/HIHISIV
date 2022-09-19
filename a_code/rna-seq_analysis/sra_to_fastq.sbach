@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=24
+#SBATCH -p mesca2
+#SBATCH -J vitradet
+
+module load sratoolkit/2.10.5
+#vdb-config --interactive
+
+DIR_IN=/../data/hiv_sra
+
+cd $DIR_IN
+
+for i in $(ls * | uniq)
+do
+echo "====="
+echo $i
+  fastq-dump --split-files $i
+done

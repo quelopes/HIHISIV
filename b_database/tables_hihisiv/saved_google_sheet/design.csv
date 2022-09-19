@@ -1,0 +1,44 @@
+acute vs chronic
+CD4 acute vs CD8 acute
+CD4 acute vs chronic
+CD4 chronic vs CD8 chronic
+CD4 non-progressor vs acute
+CD4 non-progressor vs CD8 non-progressor
+CD4 non-progressor vs chronic
+CD4 uninfected vs acute
+CD4 uninfected vs CD8 uninfected
+CD4 uninfected vs chronic
+CD4 uninfected vs non-progressor
+CD8 acute vs chronic
+CD8 non-progressor vs acute
+CD8 non-progressor vs chronic
+CD8 uninfected vs acute
+CD8 uninfected vs chronic
+CD8 uninfected vs non-progressor
+colon infected vs jejunum infected
+colon infected vs lung infected
+colon uninfected vs infected
+colon uninfected vs jejunum uninfected
+colon uninfected vs lung uninfected
+HIV controller vs chronic progressor
+jejunum infected vs lung infected
+jejunum unifected vs infected
+jejunum uninfected vs lung uninfected
+lung unifected vs infected
+natural-host acute vs chronic
+natural-host acute vs non-natural-host acute
+natural-host pre-infection vs acute
+natural-host pre-infection vs chronic
+natural-host pre-infection vs non-natural-host pre-infection
+natural-host uninfected vs chronic
+non-natural-host pre-infection vs acute
+non-natural-host uninfected vs acute
+non-progressor vs acute
+non-progressor vs chronic
+non-progressor vs progressor
+pre-infection vs acute
+pre-infection vs chronic
+uninfected vs acute
+uninfected vs chronic
+uninfected vs infected
+uninfected vs non-progressor

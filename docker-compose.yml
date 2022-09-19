@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+
+  hihisiv-postgres:
+    image: "hihisiv-postgres"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: hihisiv
+      # Change to a secure password before starting the containers!
+      POSTGRES_PASSWORD: postgres
+      PG_SYSTEM_SHARED_BUFFERS: 4096MB
+      PG_SYSTEM_MAX_CONNECTIONS: 200
+
+    networks:
+      - hihisiv-network
+    volumes:
+      - "${PG_DATA_HOST_DIR}:/var/lib/postgresql/data"
+      - "${HIHISIV_INIT}:/var/tmp/hihisiv_init"
+
+  hihisiv-webapp:
+    image: "hihisiv-webapp"
+    environment:
+      VIRTUAL_HOST: localhost
+    networks:
+      - hihisiv-network
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    networks:
+      - hihisiv-network
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+#      - /etc/ssl/omero:/etc/nginx/certs:ro
+
+
+networks:
+  hihisiv-network:

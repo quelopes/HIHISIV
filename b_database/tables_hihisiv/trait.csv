@@ -1,0 +1,7 @@
+trait_id,source_db,trait_description
+cytokine_NCBI,NCBI,cytokine list from NCBI query
+cell_surface_NCBI,NCBI,cell surface list from NCBI query
+restriction_factor_NCBI,NCBI,restriction factor list from NCBI query
+cytokine_UniProtKB,UniProtKB,cytokine list from UniProtKB query
+cell_surface_UniProtKB,UniProtKB,cell surface list from UniProtKB query
+transcription_factor_NCBI,NCBI,transcription factors from NCBI query
