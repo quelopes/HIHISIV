@@ -1,5 +1,5 @@
 ---
-title: "HIHISIV - The database of the HIV and SIV Host Immune Response"
+title: "HIHISIV - The database of gene expression in HIV and SIV host immune response"
 header-includes:
   - \usepackage{titling}
   - \pretitle{\begin{center}
@@ -25,17 +25,10 @@ All material was organized as described in this structure below:
 ```
 /hihisiv_gitlab/      
 |--- a_code/
+|    |--- metadata/
 |    |--- microarray_analysis/
 |    |--- rna-seq_analysis/
-|         |--- get_sra/
-|    |--- tables_organizing/
 |--- b_database/
-|    |--- tables_hihisiv/ # files '.csv'
-          |--- gene_gene/
-          |--- gene_species/
-          |--- platform_transcript_id/
-          |--- saved_google_sheet/
-          |--- traits/
 |    |--- Dockerfile
 |    |--- init.sql
 |--- c_web_app/
@@ -50,11 +43,11 @@ All material was organized as described in this structure below:
 
 *Microarray_analysis*
 
-- parameters.R   (information about the experiment)
-- module_processing.R 
+- parameters.R   
 - dependencies.R 
 - raw_activity.R  (CEL files, normalized matrix - affy, impute)
-- e-set_activity.R (normalized matrix, eSet object)
+- e-set_activity.R 
+- module_processing.R 
 - limma_activity.R (eSet object and phenodata matrix, differentially expressed genes matrix, limma, ggplot2, RColorBrewer)
 
 *Rna-seq_analysis*
@@ -67,34 +60,7 @@ All material was organized as described in this structure below:
 - rsem_matrix.sbatch (*genes.results, geneMat.txt, bowtie2; rsem)
 
 
-*Tables to database*
-
-- organize_tables.R
-
-
 ## B database
-
-Tables built from sheet directly. Manually curated and mounted.
-
-* experiments.csv
-* design.csv
-* tissue.csv
-* platform.csv
-* experiment_platform.csv
-* project.csv
-* project_publication.csv
-* publication.csv
-* experiment_virus.csv
-* virus.csv
-* experiment_host.csv
-* species.csv
-* trait.csv
-
-
-Tables about platforms:
-
-* extracted from GPL file from GEO;
-* removed viral probes in rhesus microarray platform.
 
 
 ### Database docker
