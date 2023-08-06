@@ -11,7 +11,7 @@
 
 
 
-<title>HIHISIV - The database of the HIV and SIV Host Immune Response</title>
+<title>HIHISIV - The database of gene expression in HIV and SIV host immune response</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -348,8 +348,8 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">HIHISIV - The database of the HIV and SIV
-Host Immune Response</h1>
+<h1 class="title toc-ignore">HIHISIV - The database of gene expression
+in HIV and SIV host immune response</h1>
 
 </div>
 
@@ -376,17 +376,10 @@ docker-compose</a></li>
 <p>All material was organized as described in this structure below:</p>
 <pre><code>/hihisiv_gitlab/      
 |--- a_code/
+|    |--- metadata/
 |    |--- microarray_analysis/
 |    |--- rna-seq_analysis/
-|         |--- get_sra/
-|    |--- tables_organizing/
 |--- b_database/
-|    |--- tables_hihisiv/ # files &#39;.csv&#39;
-          |--- gene_gene/
-          |--- gene_species/
-          |--- platform_transcript_id/
-          |--- saved_google_sheet/
-          |--- traits/
 |    |--- Dockerfile
 |    |--- init.sql
 |--- c_web_app/
@@ -398,11 +391,12 @@ docker-compose</a></li>
 <h2>A code</h2>
 <p><em>Microarray_analysis</em></p>
 <ul>
-<li>parameters.R (information about the experiment)</li>
-<li>module_processing.R</li>
+<li>parameters.R<br />
+</li>
 <li>dependencies.R</li>
 <li>raw_activity.R (CEL files, normalized matrix - affy, impute)</li>
-<li>e-set_activity.R (normalized matrix, eSet object)</li>
+<li>e-set_activity.R</li>
+<li>module_processing.R</li>
 <li>limma_activity.R (eSet object and phenodata matrix, differentially
 expressed genes matrix, limma, ggplot2, RColorBrewer)</li>
 </ul>
@@ -416,34 +410,9 @@ sratoolkit (v. 2.11.3))</li>
 <li>limma_voom.R</li>
 <li>rsem_matrix.sbatch (*genes.results, geneMat.txt, bowtie2; rsem)</li>
 </ul>
-<p><em>Tables to database</em></p>
-<ul>
-<li>organize_tables.R</li>
-</ul>
 </div>
 <div id="b-database" class="section level2">
 <h2>B database</h2>
-<p>Tables built from sheet directly. Manually curated and mounted.</p>
-<ul>
-<li>experiments.csv</li>
-<li>design.csv</li>
-<li>tissue.csv</li>
-<li>platform.csv</li>
-<li>experiment_platform.csv</li>
-<li>project.csv</li>
-<li>project_publication.csv</li>
-<li>publication.csv</li>
-<li>experiment_virus.csv</li>
-<li>virus.csv</li>
-<li>experiment_host.csv</li>
-<li>species.csv</li>
-<li>trait.csv</li>
-</ul>
-<p>Tables about platforms:</p>
-<ul>
-<li>extracted from GPL file from GEO;</li>
-<li>removed viral probes in rhesus microarray platform.</li>
-</ul>
 <div id="database-docker" class="section level3">
 <h3>Database docker</h3>
 <ul>
