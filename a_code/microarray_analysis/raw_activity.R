@@ -1,10 +1,18 @@
 raw_activity <- function(way_raw, way_out, pheno, method, name_exp) {
   print("*** ACTIVITY: NORMALIZATION ***")
-
+  
   setwd(paste0(way_raw, project, "/CEL"))
   list_dataset <- pheno_data$SAMPLE_NAME
-
-  # raw = ReadAffy()
+  
+  # cel_way = paste0(way_raw, project, "/CEL/")
+  # raw = ReadAffy(full.path = cel_way)
+  
+  # cel_files <- list.files(cel_way, full.names = TRUE)
+  # raw <- ReadAffy(cel_files)
+  # data <- ReadAffy(full.path = "/path/to/data/sample.cel")
+  
+  # raw <- ReadAffy()
+  
   # === NORMALIZATION ===
   # --- if mas5 ---
   if (method == "mas5") {
@@ -14,7 +22,7 @@ raw_activity <- function(way_raw, way_out, pheno, method, name_exp) {
     expr_set <- log(expr_set_nologs, 2)
     # summary(exprSet)
   }
-
+  
   # --- if rma ---
   if (method == "rma") {
     raw <- ReadAffy(filenames = list_dataset)
@@ -23,7 +31,7 @@ raw_activity <- function(way_raw, way_out, pheno, method, name_exp) {
     expr_set <- log(expr_set_nologs, 2)
     # summary(exprSet)
   }
-
+  
   if (method == "jac") {
     #   setwd(way_raw)
     mData <- list.files()
@@ -36,7 +44,7 @@ raw_activity <- function(way_raw, way_out, pheno, method, name_exp) {
         colnames(dataset) <- c("probe", file)
         name1 <- file
       }
-
+      
       # if the merged dataset does exist, append to it
       if (exists("dataset")) {
         temp_dataset <- read.table(file, header = TRUE, sep = "\t")
@@ -52,7 +60,7 @@ raw_activity <- function(way_raw, way_out, pheno, method, name_exp) {
     row.dataset <- as.character(dataset[, 1])
     dataset <- dataset[, -1]
     rownames(dataset) <- row.dataset
-
+    
     # 	Exclude lines with NA
     percent <- 0.95 # 70% lines with NA excluded
     missing.percent.row <- apply(dataset[, 1:ncol(dataset)], 1, function(x) {
@@ -62,19 +70,20 @@ raw_activity <- function(way_raw, way_out, pheno, method, name_exp) {
     if (length(ind) > 0) {
       dataset <- dataset[-ind, ]
     }
-
+    
     data.set <- as.matrix(log2(dataset))
     data.set <- impute.knn(data.set, k = 10, rowmax = 0.6, colmax = 1)
-
+    
     dataSet <- normalizeBetweenArrays(data.set$data, method = "cyclicloess")
     #   method = "quantile"
     # 		summary(dataSet)
-
+    
     expr_set <- dataSet
     #   setwd(set)
   }
-
+  
   # --- writing data (table) ---
+  setwd("../../../../../")
   write.table(expr_set, file = paste0(way_out, "/", name_exp, "/", name_exp, "-MatrixNormalized.csv"), quote = F, sep = ",")
   expr_set
 }

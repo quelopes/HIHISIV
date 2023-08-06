@@ -35,6 +35,5 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 #      - /etc/ssl/omero:/etc/nginx/certs:ro
 
-
 networks:
   hihisiv-network:

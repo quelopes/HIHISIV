@@ -146,9 +146,9 @@ limma_activity <- function(e_set, p_value, fold_change, way_out, name_exp) {
   names2 <- as.character(list_all[, 1])
   list.all <- list_all[, -2]
 
-  write.table(list_all,
-    file = paste0(way_out, "/", name_exp, "/", name_exp, "_diffExpression.csv"),
-    sep = ",", col.names = T, row.names = F
-  )
+  # write.table(list_all,
+  #   file = paste0(way_out, "/", name_exp, "/", name_exp, "_diffExpression.csv"),
+  #   sep = ",", col.names = T, row.names = F
+  # )
   list_all
 }
